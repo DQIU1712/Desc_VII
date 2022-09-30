@@ -32,7 +32,7 @@ else{
     </FORM>
 <?PHP
 }
-
+//hola
 ?>
 
 </body>
