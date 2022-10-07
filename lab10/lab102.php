@@ -7,10 +7,10 @@
     <H1>Encuesta. Resultado de la votacion</H1>
 
     <?PHP 
-    require_once("class/noticias.php");
+    require_once("class/votos.php");
     
-    $obj_noticia=new noticia();
-    $noticias= $obj_noticia->consultar_noticias();
+    $obj_votos=new votos();
+    $result_votos= $obj_votos->listar_votos();
 
     foreach($result_votos as $result_voto){
         $votos1=$result_voto['votos1'];
@@ -31,31 +31,22 @@
     print ("<TR>\n");
     print ("<TD CLASS='izquierda'>Si</TD>\n");
     print ("<TD CLASS='derecha'>$votos1</TD>\n");
-    print ("<TD CLASS='derecha'>$</TD>\n");
-    print ("<TH>Representacion grafica</TH>\n");
+    print ("<TD CLASS='derecha'>$porcentaje%</TD>\n");
+    print ("<TD CLASS='izquierda' WIDTH='400'><IMG SRC='img/puntoamarillo.gif' HEIGHT='10' WIDTH='".$porcentaje*4 . "'></TD>\n");
     print ("</TR>\n");
 
-        foreach ($noticias as $resultado){
-            print ("<TR>\n");
-            print ("<TD>" . $resultado['titulo'] . "</TD>\n");
-            print ("<TD>" . $resultado['texto'] . "</TD>\n");
-            print ("<TD>" . $resultado['categoria'] . "</TD>\n");
-            print ("<TD>" . date("j/n/Y",strtotime($resultado['fecha'])) . "</TD>\n");
+    $porcentaje = round (($votos2/$totalVotos)*100,2);
+    print ("<TR>\n");
+    print ("<TD CLASS='izquierda'>No</TD>\n");
+    print ("<TD CLASS='derecha'>$votos2</TD>\n");
+    print ("<TD CLASS='derecha'>$porcentaje%</TD>\n");
+    print ("<TD CLASS='izquierda' WIDTH='400'><IMG SRC='img/puntoamarillo.gif' HEIGHT='10' WIDTH='".$porcentaje*4 . "'></TD>\n");
+    print ("</TR>\n");
 
-            if ($resultado['imagen'] !=""){
-                print ("<TD><A TARGET='_blank' HREF='img/" . $resultado['imagen'] . 
-                "'><IMG BORDER='0' SRC='img/iconotexto.gif'></A></TD>\n");
-            }
-            else{
-                print ("<TD>&ndsp;</TD>\n");
-            }
-            print ("</TR>\n");
-        }
-        print ("</TABLE>\n");
-    }
-    else{
-        print ("No hay noticias disponibles");
-    }
+    print ("<TABLE>\n");
+    print ("<P>Numero total de votos emitidos: $totalVotos </P>\n");
+    print ("<P><A HREF-'lab101.php'>Pagina de votación<A/><P/>\n");
+
     ?>
 </body>
 </HTML>

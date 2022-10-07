@@ -14,16 +14,16 @@ class votos extends modeloCredencialesBD{
         $consulta=$this->_db->query($instruccion);
         $resultado=$consulta->fetch_all(MYSQLI_ASSOC);
 
-       if(!$resultado){
+       if($resultado){
         return $resultado;
         $resultado->close();
         $this->_db->close();
        }
     }
     
-    public function actualizar_votos($votos1, $votos2){
+    public function actualizar_votos($voto1, $voto2){
 
-        $instruccion="CALL sp_actualizar_votos('".$votos1."','".$votos2."')";
+        $instruccion="CALL sp_actualizar_votos('".$voto1."','".$voto2."')";
 
         $actualiza=$this->_db->query($instruccion);
 
