@@ -66,8 +66,8 @@ class noticia extends modeloCredencialesBD{
     public function cambiar_pagina($min, $limit){
 
         $instruccion="CALL sp_cambiar_pagina(?, ?)";
-        $resp=array();
 
+        $resp=array();
         $resultado=$this->_db->prepare($instruccion);
         $resultado->bind_param('ii', $min, $limit);
         $resultado->execute();
