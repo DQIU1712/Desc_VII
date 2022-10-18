@@ -25,7 +25,6 @@
         $limit = $limit -  5;
     }
     
-
     $noticias= $obj_noticia->cambiar_pagina($min, $limit);
     $total=$obj_noticia->total_cantidad_noticias();
     
