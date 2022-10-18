@@ -6,8 +6,7 @@
 <body>
     <H1>Consulta de noticias</H1>
     <?PHP 
-    require_once("class/noticias.php");
-    
+    require_once("class/noticias.php");  
     $obj_noticia=new noticia();
 
     if (array_key_exists('enviar', $_POST)) {
@@ -18,16 +17,14 @@
         $limit = 5;
     }
 
-
-    if ($_REQUEST['enviar'] >= "1") {
+    if ($_REQUEST['enviar'] == "1") {
         $min = $min + 5;
         $limit = $limit +5;
     } else if ($_REQUEST['enviar'] == "0") {
         $min = $min - 5;
-        $limit = $limit -  3;
+        $limit = $limit -  5;
     }
     
-
     $noticias= $obj_noticia->cambiar_pagina($min, $limit);
     $total=$obj_noticia->total_cantidad_noticias();
     
@@ -49,7 +46,6 @@
         print ("<form action='lab111.php' method='post'>
             <input type='hidden' name='min' value='$min'>
             <input type='hidden' name='limit' value='$limit'>
-
             <TR>Mostrando noticias ". $min+1 ." a $limit de un total de $total .[$btn1|$btn2] </TR>
             </form>");
         
