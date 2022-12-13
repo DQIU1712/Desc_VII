@@ -34,7 +34,7 @@ session_start();
     <!-- Contenedor -->
 
     <div class="contenedor">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form action="index2.php" method="post">
         <div class="form-group">
                 <label for="categoria">Categoria</label>
                 <select name="categoria" id="categoria ">
@@ -51,7 +51,7 @@ session_start();
             </div>
             <div class="form-group">
                 <label for="descripcion">Descripcion</label>
-                <texcita name="descripcion" id="descripcion" placeholder="Descripcion de la macosta" required></texcita>
+                <input name="text" name="descripcion" id="descripcion" placeholder="Descripcion de la macosta" required>
             </div>
             <div class="form-group">
                 <label for="raza">Raza</label>
@@ -105,6 +105,7 @@ if(isset($_POST['insertar'])){
     $fechac = $_POST['fechac'];
     $hora = $_POST['hora'];
 
+    $agenda = new Agenda();
     $resultado = $agenda->insertar_cita($categoria, $nombre, $descripcion, $raza, $fecha, $correo, $cell, $ubicacion, $fechac, $hora);
     if($resultado){
         echo "Cita insertada correctamente";

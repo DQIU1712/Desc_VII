@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Agenda Digital</title>
+    <title>Agenda del Cita Veterinaria</title>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>
 
@@ -15,7 +15,7 @@ session_start();
         <div class="contenedor">
             <h1>citas para</h1>
             <!-- Mostrar la fecha actual menos 1 dia -->
-            <h2><?php echo date('d-m-Y', strtotime('-1 day')); ?></h2>
+            <h2><?php echo date('Y-m-d', strtotime('-1 day')); ?></h2>
         </div>
 
         <div class="contenedor">

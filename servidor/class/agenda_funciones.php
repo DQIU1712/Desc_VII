@@ -21,18 +21,7 @@ class Agenda extends modeloCredencialesBD{
 
     public function insertar_cita($categoria, $nombre, $descripcion, $raza, $fecha, $correo, $cell, $ubicacion, $fechac, $hora){
         
-        $this->categoria = $categoria;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->raza = $raza;
-        $this->fecha = $fecha;
-        $this->correo = $correo;
-        $this->cell = $cell;
-        $this->ubicacion = $ubicacion;
-        $this->fechac=$fechac;
-        $this->hora = $hora;
-        
-        $instruccion = "CALL insertar_cita('$this->$categoria', '$this->$nombre', '$this->$descripcion', '$this->$raza', '$this->$fecha', '$this->$correo', '$this->$cell', '$this->$ubicacion', '$this->$fechac', '$this->$hora')";
+        $instruccion = "CALL insertar_cita('".$categoria."','".$nombre."', '".$descripcion."', '".$raza."', '".$fecha."', '".$correo."', '".$cell."', '".$ubicacion."', '".$fechac."', '".$hora."')";
         $consulta = $this->_db->query($instruccion); //ejecutar la consulta
         $resultado = $consulta->fetch_all(MYSQLI_ASSOC); //obtener los datos de la consulta
         if(!$resultado){
@@ -47,7 +36,7 @@ class Agenda extends modeloCredencialesBD{
 
     //Funcion para mostrar las citas con la fecha actual
     public function mostrar_citas_hoy(){
-        $instruccion = "CALL mostrar_citas_hoy2('".date('Y-m-d',strtotime(' day'))."')";
+        $instruccion = "CALL mostrar_citas_hoy2('".date('Y-m-d',strtotime('-1 day'))."')";
         $consulta = $this->_db->query($instruccion);
         $resultado = $consulta->fetch_all(MYSQLI_ASSOC);
         if(!$resultado){
@@ -103,20 +92,9 @@ class Agenda extends modeloCredencialesBD{
     }
 
     //Funcion para ACTUALIZAR las citas por id
-    public function actualizar_cita($id, $categoria, $nombre, $descripcion, $raza, $fecha, $correo, $cell, $ubicacion, $fechac, $hora){
-        $this->id = $id;
-        $this->categoria = $categoria;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->raza = $raza;
-        $this->fecha = $fecha;
-        $this->correo = $correo;
-        $this->cell = $cell;
-        $this->ubicacion = $ubicacion;
-        $this->fechac = $fechac;
-        $this->hora = $hora;
+    public function actualizar_cita($categoria, $nombre, $descripcion, $raza, $fecha, $correo, $cell, $ubicacion, $fechac, $hora){
         
-        $instruccion = "CALL actualizar_cita('$this->id', '$this->$categoria', '$this->$nombre', '$this->$descripcion', '$this->$raza', '$this->$fecha', '$this->$correo', '$this->$cell', '$this->$ubicacion', '$this->$fechac', '$this->$hora')";
+        $instruccion = "CALL actualizar_cita( '".$categoria."','".$nombre."', '".$descripcion."', '".$raza."', '".$fecha."', '".$correo."', '".$cell."', '".$ubicacion."', '".$fechac."', '".$hora."')";
         $consulta = $this->_db->query($instruccion);
         //$resultado = $consulta->fetch_all(MYSQLI_ASSOC);
         if($consulta==0){
@@ -125,8 +103,9 @@ class Agenda extends modeloCredencialesBD{
             echo "cita actualizada correctamente";
            // return $resultado;
             //$consulta->close();
-            $this->_db->close();
+            echo '<br><br><a href="./mostrar_todo.php">Volver </a>';
         }
+        return $consulta;
     }
 
     //Funcion para ELIMINAR las citas por id
